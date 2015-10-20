@@ -7,13 +7,13 @@ app.config(function($stateProvider) {
 });
 
 app.controller('HomeCtrl', function($scope, irelia) {
-    console.log($scope.summoner)
-    $scope.sumoner;
+    $scope.summoner;
     $scope.lookUp = function(summoner) {
-        console.log($scope.summoner.name)
-        irelia.getSummonerName(summoner.name).then(function(data) {
-            console.log('data')
-        })
+        irelia.getSummonerName(summoner.name)
+            .then(function(data) {
+                console.log('data', data)
+
+            })
     }
 
 });
