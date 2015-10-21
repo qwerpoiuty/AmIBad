@@ -1,0 +1,32 @@
+<div class = 'stats'>
+	<div class = 'row'>
+	<div class = 'col-md-12 player-stats'>
+		<h2>Statistics {{stats.duration}}</h2>
+		<table class = 'table table-striped'>
+			<thread>
+				<tr>
+				<th class = 'first-column'>Type</th>
+				<th class = 'second-column'>Your Performance</th>
+				<th class = 'third-column'>Average performance of your league</th>
+				<th class = 'fouth-column'>Average performance of a higher league</th>
+				</tr>
+			</thread>
+			<tbody>
+				<tr id = 'kills-row'>
+					<td>Kills</td>
+					<td>{{stats.duration}}</td>
+				</tr>
+				<tr id = 'deaths-row'>
+					<td>Deaths</td>
+					<td>{{score.score[1]}}</td>
+				</tr>
+				<tr id = 'assists-row'>
+					<td>Assists</td>
+					<td>{{score.score[2]}}</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div> 
+	</div>
+</div>

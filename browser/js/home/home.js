@@ -6,14 +6,13 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('HomeCtrl', function($scope, irelia) {
+app.controller('HomeCtrl', function($scope, $state, irelia) {
     $scope.summoner;
     $scope.lookUp = function(summoner) {
-        irelia.getSummonerName(summoner.name)
-            .then(function(data) {
-                console.log('data', data)
+        $state.go('stats', {
+            id: summoner
+        })
 
-            })
     }
 
 });
