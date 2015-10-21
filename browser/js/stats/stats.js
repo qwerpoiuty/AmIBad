@@ -26,7 +26,7 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats) {
     $scope.stats = PlayerStats
     //variables for score
     $scope.score = {}
-    $scope.score.score = [PlayerStats.stats.kills, PlayerStats.stats.deaths, PlayerStats.assists];
+    $scope.score.score = [PlayerStats.stats.kills, PlayerStats.stats.deaths, PlayerStats.stats.assists];
     $scope.score.cs = PlayerStats.stats.minionsKilled;
     $scope.score.jungleCs = PlayerStats.stats.neutralMinionsKilled;
     $scope.score.csTimeline = PlayerStats.timeline.creepsPerMinDeltas;
@@ -37,7 +37,7 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats) {
     $scope.damage.pDamageToC = PlayerStats.stats.physicalDamageDealtToChampions
     $scope.mDamageToC = PlayerStats.stats.magicDamageDealtToChampions
     $scope.damage.tDamageToC = PlayerStats.stats.trueDamageDealtToChampions
-    $scope.damage.totalDamageToC = $scope.pDamageToC + $scope.mDamageToC + $scope.tDamageToC
+    $scope.damage.totalDamageToC = $scope.damage.pDamageToC + $scope.damage.mDamageToC + $scope.damage.tDamageToC
     $scope.damage.damage = PlayerStats.stats.totalDamageDealt
     $scope.damage.negDamage = PlayerStats.stats.totalDamageTaken
     $scope.damage.damageTakenDelta = PlayerStats.timeline.damageTakenPerMinDeltas

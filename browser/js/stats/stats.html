@@ -1,7 +1,11 @@
 <div class = 'stats'>
 	<div class = 'row'>
+		<h2>Match Information</h2>
+		
+	</div>
+	<div class = 'row'>
 	<div class = 'col-md-12 player-stats'>
-		<h2>Statistics {{stats.duration}}</h2>
+		<h2>Statistics </h2>
 		<table class = 'table table-striped'>
 			<thread>
 				<tr>
@@ -12,9 +16,12 @@
 				</tr>
 			</thread>
 			<tbody>
+				<tr>
+					<th class = 't-section'>Basic Info</th>
+				</tr>
 				<tr id = 'kills-row'>
 					<td>Kills</td>
-					<td>{{stats.duration}}</td>
+					<td>{{score.score[0]}}</td>
 				</tr>
 				<tr id = 'deaths-row'>
 					<td>Deaths</td>
@@ -23,6 +30,75 @@
 				<tr id = 'assists-row'>
 					<td>Assists</td>
 					<td>{{score.score[2]}}</td>
+				</tr>
+				<tr id = 'cs-row'>
+					<td>Creep Score</td>
+					<td>{{score.cs}}</td>
+				</tr>
+				<tr>
+					<th class = 't-section'>CS info</th>
+				</tr>
+				<tr>
+					<td>Jungle Monsters Killed</td>
+					<td>{{score.jungleCs}}</td>
+				</tr>
+				<tr>
+					<td>CS per min: 0-10</td>
+					<td>{{score.csTimeline.zeroToTen}}</td>
+				</tr>
+				<tr>
+					<td>CS per min: 10-20</td>
+					<td>{{score.csTimeline.tenToTwenty}}</td>
+				</tr>
+				<tr>
+					<td>CS per min: 20-30</td>
+					<td>{{score.csTimeline.twentyToThirty}}</td>
+				</tr>
+				<tr>
+					<th class = 't-section'>Damage Breakdown
+				</tr>
+				<tr>
+					<td>Total Damage to Champions</td>
+					<td>{{damage.totalDamageToC}}</td>
+				</tr>
+				<tr>
+					<td>Physical Damage to Champions</td>
+					<td>{{damage.pDamageToC}}</td>
+				</tr>
+				<tr>
+					<td>Magic Damage to Champions</td>
+					<td>{{damage.mDamageToC}}</td>
+				</tr>
+				<tr>
+					<td>True Damage to Champions</td>
+					<td>{{damage.tDamageToC}}</td>
+				</tr>
+				<tr>
+					<td>Damage Taken</td>
+					<td>{{damage.negDamage}}</td>
+				</tr>
+				<tr>
+					<td>Damage Healed</td>
+					<td>{{damage.healed}}</td>
+				</tr>
+				<tr>
+					<th>Warding</th>
+				</tr>
+				<tr>
+					<td>Green Wards Bought</td>
+					<td>{{ward.greenWards}}</td>
+				</tr>
+				<tr>
+					<td>Pink Wards Bought</td>
+					<td>{{ward.pinkWards}}</td>
+				</tr>
+				<tr>
+					<td>Wards Placed</td>
+					<td>{{ward.warded}}</td>
+				</tr>
+				<tr>
+					<td>Wards Killed</td>
+					<td>{{ward.wardsKilled}}</td>
 				</tr>
 
 			</tbody>
