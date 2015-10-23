@@ -27,8 +27,9 @@ var schema = new mongoose.Schema({
             pink: Number,
             placed: Number,
             killed: Number
-        }
+        },
+        totalEntries: Number
     }]
 })
 
-mongoose.model('champions', schema)
+mongoose.model('Champions', schema)
