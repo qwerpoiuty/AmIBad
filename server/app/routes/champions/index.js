@@ -5,8 +5,10 @@ var _ = require('lodash');
 var Champions = mongoose.model('Champions')
 
 router.get('/champion', function(req, res) {
-    modelParams = req.query
-    Champions.find(modelParams).then(function(champ) {
+    console.log('hit it')
+    var modelParams = req.query
+    Champions.findOne(modelParams).then(function(champ) {
+        console.log('hi')
         res.json(champ)
-    }, next)
+    })
 })

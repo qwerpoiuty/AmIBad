@@ -6,10 +6,9 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('HomeCtrl', function($scope, $state, irelia) {
+app.controller('HomeCtrl', function($scope, $state) {
     $scope.summoner;
     $scope.lookUp = function(summoner) {
-        var bar = 'bar'
         $state.go('stats', {
             id: summoner
         })

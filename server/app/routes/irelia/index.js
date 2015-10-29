@@ -20,15 +20,9 @@ router.get('/id/:name', function(req, res) {
             var champion = response.games[0].championId
 
             irelia.getMatchById('na', matchId, function(err, response) {
-                var participants = response.participants
-                participants.duration = response.matchDuration
+                response.champ = champion
+                res.json(response)
 
-                for (var i = 0; i < participants.length; i++) {
-                    if (participants[i].championId === champion) {
-                        participants[i].duration = participants.duration
-                        res.json(participants[i])
-                    }
-                }
             })
         })
     });

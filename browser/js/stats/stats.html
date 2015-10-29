@@ -21,84 +21,106 @@
 				</tr>
 				<tr id = 'kills-row'>
 					<td>Kills</td>
-					<td>{{score.score[0]}}</td>
+					<td>{{playerStats.kills}}</td>
 				</tr>
 				<tr id = 'deaths-row'>
 					<td>Deaths</td>
-					<td>{{score.score[1]}}</td>
+					<td>{{playerStats.deaths}}</td>
 				</tr>
 				<tr id = 'assists-row'>
 					<td>Assists</td>
-					<td>{{score.score[2]}}</td>
+					<td>{{playerStats.assists}}</td>
 				</tr>
 				<tr id = 'cs-row'>
 					<td>Creep Score</td>
-					<td>{{score.cs}}</td>
+					<td>{{playerStats.minionsKilled + playerStats.neutralMinionsKilled}}</td>
 				</tr>
 				<tr>
 					<th class = 't-section'>CS info</th>
 				</tr>
 				<tr>
 					<td>Jungle Monsters Killed</td>
-					<td>{{score.jungleCs}}</td>
+					<td>{{playerStats.neutralMinionsKilled}}</td>
 				</tr>
 				<tr>
 					<td>CS per min: 0-10</td>
-					<td>{{score.csTimeline.zeroToTen}}</td>
+					<td>{{playerTimeline.creepsPerMinDeltas.zeroToTen}}</td>
 				</tr>
 				<tr>
 					<td>CS per min: 10-20</td>
-					<td>{{score.csTimeline.tenToTwenty}}</td>
-				</tr>
-				<tr>
-					<td>CS per min: 20-30</td>
-					<td>{{score.csTimeline.twentyToThirty}}</td>
+					<td>{{playerTimeline.creepsPerMinDeltas.tenToTwenty}}</td>
 				</tr>
 				<tr>
 					<th class = 't-section'>Damage Breakdown
 				</tr>
 				<tr>
 					<td>Total Damage to Champions</td>
-					<td>{{damage.totalDamageToC}}</td>
+					<td>{{playerStats.physicalDamageDealtToChampions + playerStats.magicalDamageDealtToChamps + playerStats.trueDamageDealtToChamps}}</td>
 				</tr>
 				<tr>
 					<td>Physical Damage to Champions</td>
-					<td>{{damage.pDamageToC}}</td>
+					<td>{{playerStats.physicalDamageDealtToChampions}}</td>
+					<td>{{average.physicalDamageDealtToChampions}}</td>
+					<td>{{higher.physicalDamageDealtToChampions}}</td>
 				</tr>
 				<tr>
 					<td>Magic Damage to Champions</td>
-					<td>{{damage.mDamageToC}}</td>
+					<td>{{playerStats.magicDamageDealtToChampions}}</td>
+					<td>{{average.magicDamageDealtToChampions}}</td>
+					<td>{{higher.magicDamageDealtToChampions}}</td>
 				</tr>
 				<tr>
 					<td>True Damage to Champions</td>
-					<td>{{damage.tDamageToC}}</td>
+					<td>{{playerStats.trueDamageDealtToChampions}}</td>
+					<td>{{average.trueDamageDealtToChampions}}</td>
+					<td>{{higher.trueDamageDealtToChampions}}</td>
 				</tr>
 				<tr>
-					<td>Damage Taken</td>
-					<td>{{damage.negDamage}}</td>
+					<td>Total Damage Taken</td>
+					<td>{{playerStats.totalDamageTaken}}</td>
+					<td>{{average.totalDamageTaken}}</td>
+					<td>{{higher.totalDamageTaken}}</td>
+				</tr>
+				<tr>
+					<td>Damage Taken Per Minute: 0-10</td>
+					<td>{{playerTimeline.damageTakenPerMinDeltas.zeroToTen}}</td>
+				</tr>
+				<tr>
+					<td>Damage Taken Per Minute: 10-20</td>
+					<td>{{playerTimeline.damageTakenPerMinDeltas.tenToTwenty}}</td>
 				</tr>
 				<tr>
 					<td>Damage Healed</td>
-					<td>{{damage.healed}}</td>
+					<td>{{playerStats.totalHeal}}</td>
+					<td>{{average.totalHeal}}</td>
+					<td>{{higher.totalHeal}}</td>
 				</tr>
 				<tr>
 					<th>Warding</th>
 				</tr>
 				<tr>
 					<td>Green Wards Bought</td>
-					<td>{{ward.greenWards}}</td>
+					<td>{{playerStats.sightWardsBoughtInGame}}</td>
+					<td>{{average.sightWardsBoughtInGame}}</td>
+					<td>{{higher.sightWardsBoughtInGame}}</td>
 				</tr>
 				<tr>
 					<td>Pink Wards Bought</td>
-					<td>{{ward.pinkWards}}</td>
+					<td>{{playerStats.visionWardsBoughtInGame}}</td>
+					<td>{{average.visionWardsBoughtInGame}}</td>
+					<td>{{higher.visionWardsBoughtInGame}}</td>
 				</tr>
 				<tr>
 					<td>Wards Placed</td>
-					<td>{{ward.warded}}</td>
+					<td>{{playerStats.wardsPlaced}}</td>
+					<td>{{average.wardsPlaced}}</td>
+					<td>{{higher.wardsPlaced}}</td>
 				</tr>
 				<tr>
 					<td>Wards Killed</td>
-					<td>{{ward.wardsKilled}}</td>
+					<td>{{playerStats.wardsKilled}}</td>
+					<td>{{average.wardsKilled}}</td>
+					<td>{{higher.wardsKilled}}</td>
 				</tr>
 
 			</tbody>

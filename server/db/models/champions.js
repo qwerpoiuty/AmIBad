@@ -6,6 +6,9 @@ var schema = new mongoose.Schema({
     name: String,
     lane: String,
     rank: String,
+    kills: Number,
+    deaths: Number,
+    assists: Number,
     dmgComposition: {
         pDamageToChamps: {
             type: Number,
