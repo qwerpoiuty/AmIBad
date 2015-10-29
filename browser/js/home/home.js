@@ -9,6 +9,7 @@ app.config(function($stateProvider) {
 app.controller('HomeCtrl', function($scope, $state, irelia) {
     $scope.summoner;
     $scope.lookUp = function(summoner) {
+        var bar = 'bar'
         $state.go('stats', {
             id: summoner
         })

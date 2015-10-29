@@ -5,9 +5,11 @@ app.config(function($stateProvider) {
         controller: 'StatsCtrl',
         resolve: {
             PlayerStats: function(irelia, $stateParams) {
-                return irelia.getRecentMatch($stateParams.id)
+                console.log($stateParams.id)
+            },
+            AverageStats: function($stateParams) {
+                console.log('hi', $stateParams)
             }
-
         }
     });
 });
