@@ -46,42 +46,41 @@ var createChamps = function() {
     var champ = {
         id: 60,
         name: 'Elise',
-        lane: 'MIDDLE',
-        rank: 'PLATINUM'
-    }
-    var damage = {
-        pDamageToChamps: 1000,
-        mDamageToChamps: 1000,
-        tDamageToChamps: 1000,
-        totalDamageToChamps: 3000,
-        damageTaken: 1000,
-        damageTakenPerMin: {
-            zeroToTen: 400,
-            tenToTwenty: 400,
-        }
-    }
-    var cs = {
-        totalCS: 100,
-        jungleCS: 20,
-        csTimeline: {
-            zeroToTen: 20,
-            tenToTwenty: 20,
+        lane: 'JUNGLE',
+        rank: 'PLATINUM',
+        kills: 1000,
+        deaths: 1000,
+        assists: 1000,
+        physicalDamageDealtToChampions: 1000,
+        magicDamageDealtToChampions: 1000,
+        trueDamageDealtToChampions: 1000,
+        totalDamageDealtToChampions: 1000,
+        minionsKilled: 1000,
+        neutralMinionsKilled: 1000,
+        sightWardsBoughtInGame: 1000,
+        visionWardsBoughtInGame: 1000,
+        wardsPlaced: 1000,
+        wardsKilled: 1000,
+        totalDamageTaken: 1000,
+        totalHeal: 1000,
+        timeline: {
+            damageTakenPerMinDeltas: {
+                zeroToTen: 1000,
+                tenToTwenty: 1000,
+            },
+            creepsPerMinDeltas: {
+                zeroToTen: 1000,
+                tenToTwenty: 1000
+            },
+            csDiffPerMinDeltas: {
+                zeroToTen: 1000,
+                tenToTwenty: 1000
+            }
+
+
         },
-        csDif: {
-            zeroToTen: 0,
-            tenToTwenty: 0,
-        }
+        totalEntries: 10
     }
-    var wards = {
-        green: 1,
-        pink: 2,
-        placed: 4,
-        killed: 10
-    }
-    champ.dmgComposition = damage;
-    champ.CS = cs;
-    champ.wards = wards
-    champ.totalEntries = 1
 
     return q.invoke(Champions, 'create', champ);
 }

@@ -9,85 +9,45 @@ var schema = new mongoose.Schema({
     kills: Number,
     deaths: Number,
     assists: Number,
-    dmgComposition: {
-        pDamageToChamps: {
-            type: Number,
-            default: 0
-        },
-        mDamageToChamps: {
-            type: Number,
-            default: 0
-        },
-        tDamageToChamps: {
-            type: Number,
-            default: 0
-        },
-        totalDamageToChamps: {
-            type: Number,
-            default: 0
-        },
-        damageTaken: {
-            type: Number,
-            default: 0
-        },
-        damageTakenPerMin: {
-            zeroToTen: {
-                type: Number,
-                default: 0
-            },
-            tenToTwenty: {
-                type: Number,
-                default: 0
-            },
-        }
+    physicalDamageDealtToChampions: {
+        type: Number,
+        default: 0
     },
-    CS: {
-        totalCS: {
-            type: Number,
-            default: 0
-        },
-        jungleCS: {
-            type: Number,
-            default: 0
-        },
-        csTimeline: {
-            zeroToTen: {
-                type: Number,
-                default: 0
-            },
-            tenToTwenty: {
-                type: Number,
-                default: 0
-            },
-        },
-        csDif: {
-            zeroToTen: {
-                type: Number,
-                default: 0
-            },
-            tenToTwenty: {
-                type: Number,
-                default: 0
-            },
-        }
+    magicDamageDealtToChampions: {
+        type: Number,
+        default: 0
     },
-    wards: {
-        green: {
-            type: Number,
-            default: 0
+    trueDamageDealtToChampions: {
+        type: Number,
+        default: 0
+    },
+    totalDamageDealtToChampions: {
+        type: Number,
+        default: 0
+    },
+    totalDamageTaken: Number,
+    totalHeal: Number,
+    minionsKilled: Number,
+    neutralMinionsKilled: Number,
+    sightWardsBoughtInGame: Number,
+    visionWardsBoughtInGame: Number,
+    wardsPlaced: Number,
+    wardsKilled: Number,
+    timeline: {
+        damageTakenPerMinDeltas: {
+            zeroToTen: Number,
+            tenToTwenty: Number,
         },
-        pink: {
-            type: Number,
-            default: 0
+        creepsPerMinDeltas: {
+            zeroToTen: Number,
+            tenToTwenty: Number
         },
-        placed: {
-            type: Number,
-            default: 0
-        },
-        killed: {
-            type: Number,
-            default: 0
+        csDiffPerMinDeltas: {
+            zeroToTen: Number,
+            tenToTwenty: Number
         }
+
+
     },
     totalEntries: {
         type: Number,

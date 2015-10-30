@@ -7,6 +7,7 @@ app.factory('irelia', function($http, stats) {
             var participants = response.data.participants
             for (var i = 0; i < participants.length; i++) {
                 if (participants[i].championId === response.data.champ) {
+                    participants[i].duration = response.data.matchDuration
                     return participants[i]
                 }
             }
