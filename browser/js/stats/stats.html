@@ -2,7 +2,8 @@
 	<div class = 'row'>
 		<div class = 'col-md-3 col-sm-5 col-lg-3 match-info'>
 			<h1 id = 'summoner'>{{player.id}}</h2>
-			<img id = 'champion' src = 'http://fillmurray.com/200/200'/>
+			<img id = 'champion' src = '//ddragon.leagueoflegends.com/cdn/5.19.1/img/champion/'+ 'Fiora' +'.png'/>
+			<h2>CHAMPION</h2>
 			<h3>Summoner Spells</h3>
 			<img id = 'ss-1' src = 'http://fillmurray.com/75/75'/>
 			<img id = 'ss-2' src = 'http://fillmurray.com/75/75'/>
@@ -13,7 +14,8 @@
 		<div class = 'col-md-9 col-sm-5 col-lg-9 statsContainer'>
 			<div class = 'row'>
 				<div class = 'adviceContainer'>
-				
+				<h1>What you need to do better</h1>
+				<p>This is your most recent match. 
 				</div>
 			</div>
 			<div class = 'row'>
@@ -29,7 +31,7 @@
 							</tr>
 						</thread>
 						<tbody>
-							<tr>
+							<tr class = 'type'>
 								<th class = 't-section'>Basic Info</th>
 							</tr>
 							<tr id = 'kills-row'>
@@ -56,7 +58,7 @@
 								<td>{{(averageStats.minionsKilled + averageStats.neutralMinionsKilled)/averageStats.totalEntries}}</td>
 								<td>{{(higherStats.minionsKilled + higherStats.neutralMinionsKilled)/higherStats.totalEntries}}</td>
 							</tr>
-							<tr>
+							<tr class = 'type'>
 								<th class = 't-section'>CS info</th>
 							</tr>
 							<tr>
@@ -73,11 +75,11 @@
 							</tr>
 							<tr>
 								<td>CS per min: 10-20</td>
-								<td>{{playerTimeline.creepsPerMinDeltas.tenToTwenty}}</td>
+								<td>{{Math.round(playerTimeline.creepsPerMinDeltas.tenToTwenty)}}</td>
 								<td>{{averageTimeline.creepsPerMinDeltas.tenToTwenty/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.creepsPerMinDeltas.tenToTwenty/higherStats.totalEntries}}</td>
 							</tr>
-							<tr>
+							<tr class = 'type'>
 								<th class = 't-section'>Damage Breakdown
 							</tr>
 							<tr>
@@ -128,7 +130,7 @@
 								<td>{{averageStats.totalHeal/averageStats.totalEntries}}</td>
 								<td>{{higherStats.totalHeal/higherStats.totalEntries}}</td>
 							</tr>
-							<tr>
+							<tr class = 'type'>
 								<th class = 't-section'>Warding</th>
 							</tr>
 							<tr>
