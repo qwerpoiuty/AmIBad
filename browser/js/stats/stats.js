@@ -22,11 +22,12 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $st
     $scope.playerTimeline = PlayerStats.timeline
 
     $scope.getAverage = function() {
-        stats.findChamp(PlayerStats.championId, PlayerStats.highestAchievedSeasonTier).then(function(data) {
-            $scope.averageStats = data
-            $scope.averageTimeline = data.timeline
-            var url = '//ddragon.leagueoflegends.com/cdn/5.19.1/img/champion/' + $scope.averageStats.name + '.png'
-            $scope.imageSource = url
+        stats.findChamp(PlayerStats.championId, PlayerStats.highestAchievedSeasonTier).then(function(champStats) {
+            $scope.averageStats = champStats
+            $scope.averageTimeline = champStats.timeline
+            $scope.imageSource = stats.getImg('champion', $scope.averageStats.name)
+            $scope.spell1 = stats.getImg('spell', $scope.player.spell1Id)
+            $scope.spell2 = stats.getImg('spell', $scope.player.spell2Id)
         })
     }
 
@@ -61,8 +62,6 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $st
     }
     $scope.getHigher()
     $scope.getAverage()
-
-    console.log($scope.averageStats)
 
 
 

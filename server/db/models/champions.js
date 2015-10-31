@@ -37,14 +37,17 @@ var schema = new mongoose.Schema({
         damageTakenPerMinDeltas: {
             zeroToTen: Number,
             tenToTwenty: Number,
+            twentyToThirty: Number
         },
         creepsPerMinDeltas: {
             zeroToTen: Number,
-            tenToTwenty: Number
+            tenToTwenty: Number,
+            twentyToThirty: Number
         },
         csDiffPerMinDeltas: {
             zeroToTen: Number,
-            tenToTwenty: Number
+            tenToTwenty: Number,
+            twentyToThirty: Number
         }
 
 
