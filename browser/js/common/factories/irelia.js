@@ -1,27 +1,18 @@
-app.factory('irelia', function($http) {
+app.factory('irelia', function($http, stats) {
     var irelia = {}
-    irelia.getSummonerName = function(summoner) {
+
+    irelia.getRecentMatch = function(summoner) {
         return $http.get('/api/irelia/id/' + summoner).then(function(response) {
-            return response.data
+            stats.setMatch(response.data)
+            var participants = response.data.participants
+            for (var i = 0; i < participants.length; i++) {
+                if (participants[i].championId === response.data.champ) {
+                    participants[i].duration = response.data.matchDuration
+                    return participants[i]
+                }
+            }
         })
     }
 
-    irelia.getGameBySummoner = function(summonerId) {
-        return $http.get('/api/irelia/game/' + summonerId).then(function(response) {
-            return response.data
-        })
-    }
-
-    irelia.getGameById = function(matchId) {
-        return $http.get('/api/irelia/match/' + matchId).then(function(response) {
-            return response.data
-        })
-    }
-
-    irelia.getChampionStats = function(championId) {
-        return $http.get('/api/irelia/champion' + champion).then(function(response) {
-            return response.data
-        })
-    }
-    return irelia;
+    return irelia
 })

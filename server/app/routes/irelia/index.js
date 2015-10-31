@@ -12,19 +12,17 @@ var irelia = new Irelia({
 
 router.get('/id/:name', function(req, res) {
     var name = req.params.name
-    console.log('name', name)
     irelia.getSummonerByName('na', name, function(err, response) {
         var summonerId = response[Object.keys(response)[0]].id
-        console.log('summoner', summonerId)
+
         irelia.getGameBySummoner('na', summonerId, function(err, response) {
             var matchId = response.games[0].gameId
             var champion = response.games[0].championId
-            console.log(matchId, champion)
+
             irelia.getMatchById('na', matchId, function(err, response) {
-                var participants = response.participants
-                for (var i = 0; i < participants.length; i++) {
-                    if (participants[i].championId === champion) res.json(participants[i])
-                }
+                response.champ = champion
+                res.json(response)
+
             })
         })
     });
