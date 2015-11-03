@@ -1,6 +1,6 @@
 app.factory('d3Factory', function() {
     var svg;
-    d3.createBarGraph = function(array, w, h) {
+    d3.createLineGraph = function(array, w, h) {
         svg = d3.select('lineGraph')
             .append('div')
             .classed('svg-container', true)
@@ -11,138 +11,90 @@ app.factory('d3Factory', function() {
 
         var tip = d3.tip()
             .attr('class', 'd3-tip')
-            .offset([-5, 0]).html(function(datum) {
-                return '<span><strong>' + d + '</strong></span>'
+            .offset([-5, 0]).html(function(d) {
+                return
             })
-        svg.call(tip)
+    }
+    d3.createStackedGraph = function(array) {
 
-        var margin = {
-                top: 20,
-                right: 20,
-                bottom: 30,
-                left: 40
-            },
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+        var w = 125,
+            h = 400
 
-        var x0 = d3.scale.ordinal()
-            .rangeRoundBands([0, width], .1);
+        // create canvas
+        svg = d3.select("#damage-graph").append("svg:svg")
+            .attr("class", "chart")
+            .attr("width", w)
+            .attr("height", h)
+            .append("svg:g")
+            .attr("transform", "translate(10,200)");
 
-        var x1 = d3.scale.ordinal();
+        var x = d3.scale.ordinal().rangeRoundBands([0, w - 50])
+        var y = d3.scale.linear().range([0, h / 3])
+        var z = d3.scale.ordinal().range(["darkblue", "blue", "lightblue"])
 
-        var y = d3.scale.linear()
-            .range([height, 0]);
+        console.log("RAW MATRIX---------------------------");
+        // 4 columns: ID,c1,c2,c3
 
-        var color = d3.scale.ordinal()
-            .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+        console.log(array)
 
-        var xAxis = d3.svg.axis()
-            .scale(x0)
-            .orient("bottom");
-
-        var yAxis = d3.svg.axis()
-            .scale(y)
-            .orient("left")
-            .tickFormat(d3.format(".2s"));
-
-        var svg = d3.select("body").append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-        d3.csv("data.csv", function(error, data) {
-            if (error) throw error;
-
-            var ageNames = d3.keys(data[0]).filter(function(key) {
-                return key !== "State";
-            });
-
-            data.forEach(function(d) {
-                d.ages = ageNames.map(function(name) {
-                    return {
-                        name: name,
-                        value: +d[name]
-                    };
-                });
-            });
-
-            x0.domain(data.map(function(d) {
-                return d.State;
-            }));
-            x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
-            y.domain([0, d3.max(data, function(d) {
-                return d3.max(d.ages, function(d) {
-                    return d.value;
-                });
-            })]);
-
-            svg.append("g")
-                .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
-
-            svg.append("g")
-                .attr("class", "y axis")
-                .call(yAxis)
-                .append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 6)
-                .attr("dy", ".71em")
-                .style("text-anchor", "end")
-                .text("Population");
-
-            var state = svg.selectAll(".state")
-                .data(data)
-                .enter().append("g")
-                .attr("class", "g")
-                .attr("transform", function(d) {
-                    return "translate(" + x0(d.State) + ",0)";
-                });
-
-            state.selectAll("rect")
-                .data(function(d) {
-                    return d.ages;
-                })
-                .enter().append("rect")
-                .attr("width", x1.rangeBand())
-                .attr("x", function(d) {
-                    return x1(d.name);
-                })
-                .attr("y", function(d) {
-                    return y(d.value);
-                })
-                .attr("height", function(d) {
-                    return height - y(d.value);
-                })
-                .style("fill", function(d) {
-                    return color(d.name);
-                });
-
-            var legend = svg.selectAll(".legend")
-                .data(ageNames.slice().reverse())
-                .enter().append("g")
-                .attr("class", "legend")
-                .attr("transform", function(d, i) {
-                    return "translate(0," + i * 20 + ")";
-                });
-
-            legend.append("rect")
-                .attr("x", width - 18)
-                .attr("width", 18)
-                .attr("height", 18)
-                .style("fill", color);
-
-            legend.append("text")
-                .attr("x", width - 24)
-                .attr("y", 9)
-                .attr("dy", ".35em")
-                .style("text-anchor", "end")
-                .text(function(d) {
-                    return d;
-                });
-
+        console.log("REMAP---------------------------");
+        var remapped = ["c1", "c2", "c3"].map(function(dat, i) {
+            return array.map(function(d, ii) {
+                return {
+                    x: ii,
+                    y: d[i + 1]
+                };
+            })
         });
+        console.log(remapped)
+
+        console.log("LAYOUT---------------------------");
+        var stacked = d3.layout.stack()(remapped)
+        console.log(stacked)
+
+        x.domain(stacked[0].map(function(d) {
+            return d.x;
+        }));
+        y.domain([0, d3.max(stacked[stacked.length - 1], function(d) {
+            return (d.y0 + d.y) * .5;
+        })]);
+
+        // show the domains of the scales
+        console.log("x.domain(): " + x.domain())
+        console.log("y.domain(): " + y.domain())
+        console.log("------------------------------------------------------------------");
+
+        // Add a group for each column.
+        var valgroup = svg.selectAll("g.valgroup")
+            .data(stacked)
+            .enter().append("svg:g")
+            .attr("class", "valgroup")
+            .style("fill", function(d, i) {
+                return z(i);
+            })
+            .style("stroke", function(d, i) {
+                return d3.rgb(z(i)).darker();
+            });
+
+        // Add a rect for each date.
+        var rect = valgroup.selectAll("rect")
+            .data(function(d) {
+                return d;
+            })
+            .enter().append("svg:rect")
+            .attr("x", function(d) {
+                return x(d.x);
+            })
+            .attr("y", function(d) {
+                return -(y(d.y0) - y(d.y));
+            })
+            .attr("height", function(d) {
+                return y(d.y);
+            })
+            .attr("width", x.rangeBand());
+
+
     }
 
+    return d3;
 })

@@ -4,15 +4,15 @@ app.config(function($stateProvider) {
         templateUrl: 'js/stats/stats.html',
         controller: 'StatsCtrl',
         resolve: {
-            PlayerStats: function(irelia, $stateParams) {
-                return irelia.getRecentMatch($stateParams.id)
+            PlayerStats: function(stats, $stateParams) {
+                return stats.findChamp('40', 'PLATINUM')
             }
 
         }
     });
 });
 
-app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $stateParams) {
+app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $stateParams, d3Factory) {
     //sorting the stats of the player into things to be displayed
     $scope.Math = window.Math
     $scope.player = PlayerStats
@@ -22,46 +22,62 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $st
     $scope.playerTimeline = PlayerStats.timeline
 
     $scope.getAverage = function() {
-        stats.findChamp(PlayerStats.championId, PlayerStats.highestAchievedSeasonTier).then(function(champStats) {
+        stats.findChamp('40', 'PLATINUM').then(function(champStats) {
+            console.log(champStats)
             $scope.averageStats = champStats
             $scope.averageTimeline = champStats.timeline
             $scope.imageSource = stats.getImg('champion', $scope.averageStats.name)
             $scope.spell1 = stats.getImg('spell', $scope.player.spell1Id)
             $scope.spell2 = stats.getImg('spell', $scope.player.spell2Id)
+            $scope.makeGraphs()
         })
     }
 
     $scope.getHigher = function() {
-        var rank = ''
-        switch ($scope.player.highestAchievedSeasonTier) {
-            case 'BRONZE':
-                rank = 'SILVER'
-                break
-            case 'SILVER':
-                rank = 'GOLD'
-                break
-            case 'GOLD':
-                rank = 'PLATINUM'
-                break
-            case 'PLATINUM':
-                rank = 'DIAMOND'
-                break
-            case 'DIAMOND':
-                rank = 'MASTER'
-                break
-            case 'MASTER':
-                rank = 'CHALLENGER'
-                break
-            case 'CHALLENGER':
-                rank = 'CHALLENGER'
-        }
-        stats.findChamp(PlayerStats.championId, rank).then(function(data) {
+        var rank = 'PLATINUM'
+            // switch ($scope.player.highestAchievedSeasonTier) {
+            //     case 'BRONZE':
+            //         rank = 'SILVER'
+            //         break
+            //     case 'SILVER':
+            //         rank = 'GOLD'
+            //         break
+            //     case 'GOLD':
+            //         rank = 'PLATINUM'
+            //         break
+            //     case 'PLATINUM':
+            //         rank = 'DIAMOND'
+            //         break
+            //     case 'DIAMOND':
+            //         rank = 'MASTER'
+            //         break
+            //     case 'MASTER':
+            //         rank = 'CHALLENGER'
+            //         break
+            //     case 'CHALLENGER':
+            //         rank = 'CHALLENGER'
+            // }
+        stats.findChamp('40', rank).then(function(data) {
             $scope.higherStats = data;
             $scope.higherTimeline = data.timeline;
         })
     }
     $scope.getHigher()
     $scope.getAverage()
+
+    $scope.makeGraphs = function() {
+        var player = $scope.player
+        var average = $scope.averageStats
+        console.log($scope.higherStats)
+        var higher = $scope.higherStats
+        var damage = [
+            [1, player.physicalDamageDealtToChampions, player.magicDamageDealtToChampions, player.trueDamageDealtToChampions],
+            [2, average.physicalDamageDealtToChampions, average.magicDamageDealtToChampions, average.trueDamageDealtToChampions],
+            [3, average.physicalDamageDealtToChampions, average.magicDamageDealtToChampions, average.trueDamageDealtToChampions]
+        ]
+        console.log('damage', damage)
+        d3.createStackedGraph(damage)
+    }
 
 
 
