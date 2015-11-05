@@ -5,6 +5,7 @@ app.config(function($stateProvider) {
         controller: 'StatsCtrl',
         resolve: {
             PlayerStats: function(stats, $stateParams) {
+                console.log('hi' + stats)
                 return stats.findChamp('40', 'PLATINUM')
             }
 
@@ -34,29 +35,29 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $st
     }
 
     $scope.getHigher = function() {
-        var rank = 'PLATINUM'
-            // switch ($scope.player.highestAchievedSeasonTier) {
-            //     case 'BRONZE':
-            //         rank = 'SILVER'
-            //         break
-            //     case 'SILVER':
-            //         rank = 'GOLD'
-            //         break
-            //     case 'GOLD':
-            //         rank = 'PLATINUM'
-            //         break
-            //     case 'PLATINUM':
-            //         rank = 'DIAMOND'
-            //         break
-            //     case 'DIAMOND':
-            //         rank = 'MASTER'
-            //         break
-            //     case 'MASTER':
-            //         rank = 'CHALLENGER'
-            //         break
-            //     case 'CHALLENGER':
-            //         rank = 'CHALLENGER'
-            // }
+        $scope.rank = 'PLATINUM'
+        // switch ($scope.player.highestAchievedSeasonTier) {
+        //     case 'BRONZE':
+        //         rank = 'SILVER'
+        //         break
+        //     case 'SILVER':
+        //         rank = 'GOLD'
+        //         break
+        //     case 'GOLD':
+        //         rank = 'PLATINUM'
+        //         break
+        //     case 'PLATINUM':
+        //         rank = 'DIAMOND'
+        //         break
+        //     case 'DIAMOND':
+        //         rank = 'MASTER'
+        //         break
+        //     case 'MASTER':
+        //         rank = 'CHALLENGER'
+        //         break
+        //     case 'CHALLENGER':
+        //         rank = 'CHALLENGER'
+        // }
         stats.findChamp('40', rank).then(function(data) {
             $scope.higherStats = data;
             $scope.higherTimeline = data.timeline;
@@ -65,16 +66,24 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $st
     $scope.getHigher()
     $scope.getAverage()
 
+
     $scope.makeGraphs = function() {
         var player = $scope.player
         var average = $scope.averageStats
-        console.log($scope.higherStats)
         var higher = $scope.higherStats
         var damage = [
-            [1, player.physicalDamageDealtToChampions, player.magicDamageDealtToChampions, player.trueDamageDealtToChampions],
-            [2, average.physicalDamageDealtToChampions, average.magicDamageDealtToChampions, average.trueDamageDealtToChampions],
-            [3, average.physicalDamageDealtToChampions, average.magicDamageDealtToChampions, average.trueDamageDealtToChampions]
+            ['YOU', player.physicalDamageDealtToChampions, player.magicDamageDealtToChampions, player.trueDamageDealtToChampions],
+            ['The average ' + $scope.player.highestAchievedSeasonTier + ' player', average.physicalDamageDealtToChampions, average.magicDamageDealtToChampions, average.trueDamageDealtToChampions],
+            ['The average ' + $scope.rank + ' player', average.physicalDamageDealtToChampions, average.magicDamageDealtToChampions, average.trueDamageDealtToChampions]
         ]
+        var cs = [
+            ($scope.playerTimeline.creepsPerMinDeltas.zeroToTen * 10 + $scope.playertimeline.creepsPerMinDeltas.tenToTwenty * 10), ($scope.averageTimeline.creepsPerMinDeltas.zeroToTen * 10 + $scope.averageTimeline.creepsPerMinDeltas.tenToTwenty * 10), ($scope.higherTimeline.creepsPerMinDeltas.zeroToTen * 10 + $scope.higherTimeline.creepsPerMinDeltas.tenToTwenty * 10)
+        ]
+
+        var csDif = [
+            $scope.playerTimeline.csDiffPerMinDeltas
+        ]
+
         console.log('damage', damage)
         d3.createStackedGraph(damage)
     }
