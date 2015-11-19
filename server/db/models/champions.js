@@ -36,18 +36,15 @@ var schema = new mongoose.Schema({
     timeline: {
         damageTakenPerMinDeltas: {
             zeroToTen: Number,
-            tenToTwenty: Number,
-            twentyToThirty: Number
+            tenToTwenty: Number
         },
         creepsPerMinDeltas: {
             zeroToTen: Number,
-            tenToTwenty: Number,
-            twentyToThirty: Number
+            tenToTwenty: Number
         },
         csDiffPerMinDeltas: {
             zeroToTen: Number,
-            tenToTwenty: Number,
-            twentyToThirty: Number
+            tenToTwenty: Number
         }
 
 
