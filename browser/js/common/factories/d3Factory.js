@@ -1,21 +1,20 @@
 app.factory('d3Factory', function() {
     var svg;
 
-    d3.createStackedGraph = function(array) {
+    d3.createStackedGraph = function(id, array) {
 
         var w = 125,
-            h = 300
+            h = 200
 
         // create canvas
-        svg = d3.select("#damage-graph").append("svg:svg")
+        svg = d3.select("#" + id).append("svg:svg")
             .attr("class", "chart")
             .attr("width", w)
             .attr("height", h)
             .append("svg:g")
-            .attr("transform", "translate(10,200)");
-
+            .attr("transform", "translate(10,200)")
         var x = d3.scale.ordinal().rangeRoundBands([0, w - 50])
-        var y = d3.scale.linear().range([0, h / 2])
+        var y = d3.scale.linear().range([0, h])
         var z = d3.scale.ordinal().range(["darkblue", "blue", "lightblue"])
 
         console.log("RAW MATRIX---------------------------");
@@ -41,6 +40,7 @@ app.factory('d3Factory', function() {
             return d.x;
         }));
         y.domain([0, d3.max(stacked[stacked.length - 1], function(d) {
+            if (d.y === undefined) d.y = 0
             return (d.y0 + d.y);
         })]);
 
@@ -77,8 +77,10 @@ app.factory('d3Factory', function() {
                 return y(d.y);
             })
             .attr("width", x.rangeBand());
+    }
 
-
+    d3.createBarGraph = function(array) {
+        svg = d3.select('')
     }
 
     return d3;

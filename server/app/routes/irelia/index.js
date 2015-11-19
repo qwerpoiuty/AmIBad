@@ -28,3 +28,15 @@ router.get('/id/:name', function(req, res) {
     });
 
 })
+
+router.get('/stats/:name', function(req, res) {
+    var name = req.params.name
+    irelia.getSummonerByName('na', namem
+        function(err, response) {
+            var summonerId = response[Object.keys(response)[0]].id
+
+            irelia.getRankedStatsBySummonerId('na', summonerId, function(err, response) {
+                res.json(response)
+            })
+        })
+})

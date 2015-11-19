@@ -14,5 +14,11 @@ app.factory('irelia', function($http, stats) {
         })
     }
 
+    irelia.getSmnStats = function(summoner) {
+        return $http.get('/api/irelia/stats/' + summoner).then(function(response) {
+            return response.data
+        })
+    }
+
     return irelia
 })

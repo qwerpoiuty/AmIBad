@@ -14,25 +14,11 @@
 		<div class = 'col-md-9 col-sm-5 col-lg-9 statsContainer'>
 			<div class = 'row'>
 				<div class = 'adviceContainer'>
-				<h1>What you need to do better</h1>
-				<p>This is your most recent match. 
+				<h1>What you need to do better in your first 20 minutes</h1>
+				<p>This is your most recent match.</p>
 				</div>
 			</div>
 			<div class = 'row'>
-				<div class = 'col-md-3 col-sm-12 col-lg-3 graphs1'>
-					<h3>Damage Graphs</h3>
-					<div class = 'graph' id = 'damage-graph'></div>
-					<h5>Damage Dealt Breakdown</h5>
-					<h5>Damage Taken Breakdown</h5>
-					<h5>Damage Taken Diferential Breakdown</h5>
-
-				</div>
-				<div class = 'col-md-3 col-sm-12 col-lg-3 graphs-time'>
-					<h3>CS Graphs</h3>
-					<h5>Total CS Breakdown</h5>
-					<h5>CS/Min Breakdown</h5>
-					<h5>CS differential Breakdown</h5>
-				</div>
 				<div class = 'col-md-3 col-sm-5 col-lg-3 player-stats'>
 					<h3 id = 'stats'>Statistics </h3>
 					<table class = 'table table-striped'>
@@ -46,40 +32,7 @@
 						</thread>
 						<tbody>
 							<tr class = 'type'>
-								<th class = 't-section'>Basic Info</th>
-							</tr>
-							<tr id = 'kills-row'>
-								<td>Kills</td>
-								<td>{{playerStats.kills}}</td>
-								<td>{{averageStats.kills/averageStats.totalEntries}}</td>
-								<td>{{higherStats.kills/higherStats.totalEntries}}</td>
-							</tr>
-							<tr id = 'deaths-row'>
-								<td>Deaths</td>
-								<td>{{playerStats.deaths}}</td>
-								<td>{{averageStats.deaths/averageStats.totalEntries}}</td>
-								<td>{{higherStats.deaths/higherStats.totalEntries}}</td>
-							</tr>
-							<tr id = 'assists-row'>
-								<td>Assists</td>
-								<td>{{playerStats.assists}}</td>
-								<td>{{averageStats.assists/averageStats.totalEntries}}</td>
-								<td>{{higherStats.assists/higherStats.totalEntries}}</td>
-							</tr>
-							<tr id = 'cs-row'>
-								<td>Creep Score</td>
-								<td>{{playerStats.minionsKilled + playerStats.neutralMinionsKilled}}</td>
-								<td>{{(averageStats.minionsKilled + averageStats.neutralMinionsKilled)/averageStats.totalEntries}}</td>
-								<td>{{(higherStats.minionsKilled + higherStats.neutralMinionsKilled)/higherStats.totalEntries}}</td>
-							</tr>
-							<tr class = 'type'>
 								<th class = 't-section'>CS info</th>
-							</tr>
-							<tr>
-								<td>Jungle Monsters Killed</td>
-								<td>{{playerStats.neutralMinionsKilled}}</td>
-								<td>{{averageStats.neutralMinionsKilled/averageStats.totalEntries}}</td>
-								<td>{{higherStats.neutralMinionsKilled/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
 								<td>CS per min: 0-10</td>
@@ -105,50 +58,8 @@
 								<td>{{averageTimeline.csDiffPerMinDeltas.tenToTwenty * 10/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.csDiffPerMinDeltas.tenToTwenty * 10/higherStats.totalEntries}}</td>
 							</tr>
-							<tr>
-								<td>CS per min: 20-30</td>
-								<td>{{Math.round(playerTimeline.creepsPerMinDeltas.twentyToThirty)}}</td>
-								<td>{{averageTimeline.creepsPerMinDeltas.twentyToThirty/averageStats.totalEntries}}</td>
-								<td>{{higherTimeline.creepsPerMinDeltas.twentyToThirty/higherStats.totalEntries}}</td>
-							</tr>
-							<tr ng-if = 'playerTimeline.csDiffPerMinDeltas'>
-								<td>CS difference at 30 minutes</td>
-								<td>{{playerTimeline.csDiffPerMinDeltas.twentyToThirty * 10}}</td>
-								<td>{{averageTimeline.csDiffPerMinDeltas.twentyToThirty * 10/averageStats.totalEntries}}</td>
-								<td>{{higherTimeline.csDiffPerMinDeltas.twentyToThirty * 10/higherStats.totalEntries}}</td>
-							</tr>
 							<tr class = 'type'>
 								<th class = 't-section'>Damage Breakdown
-							</tr>
-							<tr>
-								<td>Total Damage to Champions</td>
-								<td>{{playerStats.totalDamageDealtToChampions}}</td>
-								<td>{{averageStats.totalDamageDealtToChampions/averageStats.totalEntries}}</td>
-								<td>{{higherStats.totalDamageDealtToChampions/higherStats.totalEntries}}</td>
-							</tr>
-							<tr>
-								<td>Physical Damage to Champions</td>
-								<td>{{playerStats.physicalDamageDealtToChampions}}</td>
-								<td>{{averageStats.physicalDamageDealtToChampions/averageStats.totalEntries}}</td>
-								<td>{{higherStats.physicalDamageDealtToChampions/higherStats.totalEntries}}</td>
-							</tr>
-							<tr>
-								<td>Magic Damage to Champions</td>
-								<td>{{playerStats.magicDamageDealtToChampions}}</td>
-								<td>{{averageStats.magicDamageDealtToChampions/averageStats.totalEntries}}</td>
-								<td>{{higherStats.magicDamageDealtToChampions/higherStats.totalEntries}}</td>
-							</tr>
-							<tr>
-								<td>True Damage to Champions</td>
-								<td>{{playerStats.trueDamageDealtToChampions}}</td>
-								<td>{{averageStats.trueDamageDealtToChampions/averageStats.totalEntries}}</td>
-								<td>{{higherStats.trueDamageDealtToChampions/higherStats.totalEntries}}</td>
-							</tr>
-							<tr>
-								<td>Total Damage Taken</td>
-								<td>{{playerStats.totalDamageTaken}}</td>
-								<td>{{averageStats.totalDamageTaken/averageStats.totalEntries}}</td>
-								<td>{{higherStats.totalDamageTaken/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
 								<td>Damage Taken Per Minute: 0-10</td>
@@ -161,18 +72,6 @@
 								<td>{{Math.round(playerTimeline.damageTakenPerMinDeltas.tenToTwenty)}}</td>
 								<td>{{averageTimeline.damageTakenPerMinDeltas.tenToTwenty/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.damageTakenPerMinDeltas.tenToTwenty/higherStats.totalEntries}}</td>
-							</tr>
-							<tr>
-								<td>Damage Taken Per Minute: 20-30</td>
-								<td>{{Math.round(playerTimeline.damageTakenPerMinDeltas.twentyToThirty)}}</td>
-								<td>{{averageTimeline.damageTakenPerMinDeltas.twentyToThirty/averageStats.totalEntries}}</td>
-								<td>{{higherTimeline.damageTakenPerMinDeltas.twentyToThirty/higherStats.totalEntries}}</td>
-							</tr>
-							<tr>
-								<td>Damage Healed</td>
-								<td>{{playerStats.totalHeal}}</td>
-								<td>{{averageStats.totalHeal/averageStats.totalEntries}}</td>
-								<td>{{higherStats.totalHeal/higherStats.totalEntries}}</td>
 							</tr>
 							<tr class = 'type'>
 								<th class = 't-section'>Warding</th>
