@@ -1,2 +1,68 @@
+.stats{
+	background-color:$foreground;
+	position:relative;
+	-webkit-box-shadow: 0px 0px 12px 6px rgba(31,90,108,1);
+	-moz-box-shadow: 0px 0px 12px 6px rgba(31,90,108,1);
+	box-shadow: 0px 0px 12px 6px rgba(31,90,108,1);
+	.match-info{
+		color:$accent2;
+		font-weight: bold;
+		text-align:center;
+		margin-left:-3%;
+		#summoner{
+			display:inline-block;
+			margin:0 auto;
+			font-size: 3.2em;
+			margin: 5% 0;
+		}
+		#champion{
+			display:block;
+			margin:5% auto;
+			font-size: 3em;
+		}
+		#champion-name{
+			display:inline-block;
+			margin:0 auto;
+			color:$accent2;
+		}
+	} 
+	.statsContainer{
+		#stats{
+			font-size: 2.5em;
+			color:$accent2;
+		}
+		table{
+			border-spacing: 0;
+		}
+		td, th{
+  			width: 4rem;
+  			height: 2rem;
+  			text-align: center;
+			
+		}
+		.table > tbody > tr > th{
+			border:none;
+		}
+		th {
+			background: $highlight;
+		}
+		td{
+			color:$light;
+		}
+		tr{
 
+		}
+		.adviceContainer{
+			h1{
+				color:$accent2;
+			}
+			p{
+				color:$light;
+			}
+		}
+		.player-stats{
+			padding:0;
+		}
+	}
+}
 

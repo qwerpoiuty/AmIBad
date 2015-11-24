@@ -1,17 +1,17 @@
 <div class = 'stats'>
 	<div class = 'row'>
-		<div class = 'col-md-3 col-sm-5 col-lg-3 match-info'>
+		<div class = 'col-md-4 col-sm-6 col-lg-4 match-info'>
 			<h1 id = 'summoner'>{{player.id}}</h2>
 			<img id = 'champion' data-ng-src = '{{imageSource}}'/>
-			<h2>{{averageStats.name}}</h2>
-			<h3>Summoner Spells</h3>
+			<h2 id = 'champion-name'>Amumu</h2>
+			<h3 class = 'title'>Summoner Spells</h3>
 			<img id = 'ss-1' data-ng-src = '{{spell1}}'/>
 			<img id = 'ss-2' data-ng-src = '{{spell2}}'/>
 			<h3 id = 'rank'>{{player.highestAchievedSeasonTier}}
 			<h3 id = 'lane'>{{playerTimeline.lane}}</h3>
 			<h4 id = 'duration'>Game Length {{player.duration}}</h3>
 		</div>
-		<div class = 'col-md-9 col-sm-5 col-lg-9 statsContainer'>
+		<div class = 'col-md-8 col-sm-6 col-lg-8 statsContainer'>
 			<div class = 'row'>
 				<div class = 'adviceContainer'>
 				<h1>What you need to do better in your first 20 minutes</h1>
@@ -19,9 +19,9 @@
 				</div>
 			</div>
 			<div class = 'row'>
-				<div class = 'col-md-3 col-sm-5 col-lg-3 player-stats'>
+				<div class = 'col-md-3 col-sm-12 col-lg-3 player-stats'>
 					<h3 id = 'stats'>Statistics </h3>
-					<table class = 'table table-striped'>
+					<table class = 'table'>
 						<thread>
 							<tr>
 							<th class = 'first-column'></th>
@@ -31,71 +31,62 @@
 							</tr>
 						</thread>
 						<tbody>
-							<tr class = 'type'>
-								<th class = 't-section'>CS info</th>
-							</tr>
 							<tr>
-								<td>CS per min: 0-10</td>
+								<th>CS per min: 0-10</th>
 								<td>{{playerTimeline.creepsPerMinDeltas.zeroToTen}}</td>
 								<td>{{averageTimeline.creepsPerMinDeltas.zeroToTen/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.creepsPerMinDeltas.zeroToTen/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
-								<td>CS difference at 10 minutes</td>
+								<th>CS difference at 10 minutes</th>
 								<td>{{playerTimeline.csDiffPerMinDeltas.zeroToTen * 10}}</td>
 								<td>{{averageTimeline.csDiffPerMinDeltas.zeroToTen * 10/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.csDiffPerMinDeltas.zeroToTen * 10/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
-								<td>CS per min: 10-20</td>
+								<th>CS per min: 10-20</th>
 								<td>{{Math.round(playerTimeline.creepsPerMinDeltas.tenToTwenty)}}</td>
 								<td>{{averageTimeline.creepsPerMinDeltas.tenToTwenty/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.creepsPerMinDeltas.tenToTwenty/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
-								<td>CS difference at 20 minutes</td>
+								<th>CS difference at 20 minutes</th>
 								<td>{{playerTimeline.csDiffPerMinDeltas.tenToTwenty * 10}}</td>
 								<td>{{averageTimeline.csDiffPerMinDeltas.tenToTwenty * 10/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.csDiffPerMinDeltas.tenToTwenty * 10/higherStats.totalEntries}}</td>
 							</tr>
-							<tr class = 'type'>
-								<th class = 't-section'>Damage Breakdown
-							</tr>
 							<tr>
-								<td>Damage Taken Per Minute: 0-10</td>
+								<th>Damage Taken Per Minute: 0-10</th>
 								<td>{{Math.round(playerTimeline.damageTakenPerMinDeltas.zeroToTen)}}</td>
 								<td>{{averageTimeline.damageTakenPerMinDeltas.zeroToTen/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.damageTakenPerMinDeltas.zeroToTen/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
-								<td>Damage Taken Per Minute: 10-20</td>
+								<th>Damage Taken Per Minute: 10-20</th>
 								<td>{{Math.round(playerTimeline.damageTakenPerMinDeltas.tenToTwenty)}}</td>
 								<td>{{averageTimeline.damageTakenPerMinDeltas.tenToTwenty/averageStats.totalEntries}}</td>
 								<td>{{higherTimeline.damageTakenPerMinDeltas.tenToTwenty/higherStats.totalEntries}}</td>
 							</tr>
-							<tr class = 'type'>
-								<th class = 't-section'>Warding</th>
-							</tr>
 							<tr>
-								<td>Green Wards Bought</td>
+								<th>Green Wards Bought</th>
 								<td>{{playerStats.sightWardsBoughtInGame}}</td>
 								<td>{{averageStats.sightWardsBoughtInGame/averageStats.totalEntries}}</td>
 								<td>{{higherStats.sightWardsBoughtInGame/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
-								<td>Pink Wards Bought</td>
+								<th>Pink Wards Bought</th>
 								<td>{{playerStats.visionWardsBoughtInGame}}</td>
 								<td>{{averageStats.visionWardsBoughtInGame/averageStats.totalEntries}}</td>
 								<td>{{higherStats.visionWardsBoughtInGame/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
-								<td>Wards Placed</td>
+								<th>Wards Placed</th>
 								<td>{{playerStats.wardsPlaced}}</td>
 								<td>{{averageStats.wardsPlaced/averageStats.totalEntries}}</td>
 								<td>{{higherStats.wardsPlaced/higherStats.totalEntries}}</td>
 							</tr>
 							<tr>
-								<td>Wards Killed</td>
+								<th>Wards Killed</th>
 								<td>{{playerStats.wardsKilled}}</td>
 								<td>{{averageStats.wardsKilled/averageStats.totalEntries}}</td>
 								<td>{{higherStats.wardsKilled/higherStats.totalEntries}}</td>

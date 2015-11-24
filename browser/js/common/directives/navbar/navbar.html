@@ -1,14 +1,16 @@
 <nav class="navbar navbar-static-top">
     <div class="container">
         <div class="navbar-header">
+            <a ui-sref-active="active" ui-sref = "home"><h1 class = 'title'>GitGud</h1></a>
         </div>
         <ul class="nav navbar-nav">
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
-        <input type = 'text' id = 'summoner' ng-model = 'summoner' placeholder = 'Your Summoner Name'/>
-        <button class = 'btn btn-default' ng-click="lookUp(summoner)">Am I bad?</button>
-        
+        <div class = 'search-bar'>
+            <input type = 'text' id = 'summoner' ng-model = 'summoner' placeholder = 'Your Summoner Name'/>
+            <button class = 'search btn btn-default' ng-click="lookUp(summoner)">Am I bad?</button>
+        </div>
     </div>
 </nav>

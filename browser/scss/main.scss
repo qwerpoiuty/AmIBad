@@ -1,3 +1,9 @@
+$background : rgba(24,54,65,1);
+$accent2: #94CFC9;
+$light: #CEE9F4;
+$foreground: #1F5A6C;
+$highlight:#4699B7;
+$accent1:#6DB3BF;
 * {
   box-sizing: border-box;
 }
@@ -15,10 +21,16 @@ body {
 }
 
 #main {
-  padding-top: 60px;
-  width: 1200px;
+  width: 90%;
   margin: 0 auto;
+  background-color:white;
 }
+
+.background{
+  background-color: $background;
+  z-index: -10;
+}
+
 
 @import 'directives/main';
 @import 'home/main';
