@@ -1,86 +1,149 @@
 app.factory('d3Factory', function() {
     var svg;
 
-    d3.createStackedGraph = function(id, array) {
+    d3.createBarGraph = function(json, element) {
+        var margin = {
+                top: 20,
+                right: 20,
+                bottom: 30,
+                left: 40
+            },
+            width = 350 - margin.left - margin.right,
+            height = 300 - margin.top - margin.bottom;
 
-        var w = 125,
-            h = 200
 
-        // create canvas
-        svg = d3.select("#" + id).append("svg:svg")
-            .attr("class", "chart")
-            .attr("width", w)
-            .attr("height", h)
-            .append("svg:g")
-            .attr("transform", "translate(10,200)")
-        var x = d3.scale.ordinal().rangeRoundBands([0, w - 50])
-        var y = d3.scale.linear().range([0, h])
-        var z = d3.scale.ordinal().range(["darkblue", "blue", "lightblue"])
+        var x0 = d3.scale.ordinal()
+            .rangeRoundBands([0, width], .1)
 
-        console.log("RAW MATRIX---------------------------");
-        // 4 columns: ID,c1,c2,c3
-        console.log(array)
+        var x1 = d3.scale.ordinal()
 
-        console.log("REMAP---------------------------");
-        var remapped = ["c1", "c2", "c3"].map(function(dat, i) {
-            return array.map(function(d, ii) {
+        var y = d3.scale.linear()
+            .range([height, 0])
+
+        var color = d3.scale.ordinal()
+            .range(['#FFF06D', '#FFA94D', '#FF5353'])
+
+        var xAxis = d3.svg.axis()
+            .scale(x0)
+            .orient('bottom')
+
+        var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient('left')
+
+
+        svg = d3.select(element)
+            .append('div')
+            .classed('svg-container', true)
+            .append('svg')
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 400 300")
+            .classed('svg0content-responsive', true)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+        // var svg = d3.select(element).append("svg")
+        //     .attr("width", width + margin.left + margin.right)
+        //     .attr("height", height + margin.top + margin.bottom)
+        //     .append("g")
+        //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .offset([-5, 0]).html(function(d) {
+                return "<span><strong>" + d.value + "</strong></span>"
+            })
+        svg.call(tip)
+        var data = json
+
+        var intervals = d3.keys(data[0]).filter(function(key) {
+            return (key !== 'time')
+        })
+
+        data.forEach(function(d) {
+            d.value = intervals.map(function(name) {
                 return {
-                    x: ii,
-                    y: d[i + 1]
+                    name: name,
+                    value: +d[name]
                 };
-            })
-        });
-        console.log(remapped)
+            });
+        })
 
-        console.log("LAYOUT---------------------------");
-        var stacked = d3.layout.stack()(remapped)
-        console.log(stacked)
 
-        x.domain(stacked[0].map(function(d) {
-            return d.x;
+        x0.domain(data.map(function(d) {
+            return d.time
         }));
-        y.domain([0, d3.max(stacked[stacked.length - 1], function(d) {
-            if (d.y === undefined) d.y = 0
-            return (d.y0 + d.y);
-        })]);
+        x1.domain(intervals).rangeRoundBands([5, x0.rangeBand()]);
+        y.domain([0, (10 + d3.max(data, function(d) {
+            return d3.max(d.value, function(d) {
+                return d.value
+            });
+        }))]);
 
-        // show the domains of the scales
-        console.log("x.domain(): " + x.domain())
-        console.log("y.domain(): " + y.domain())
-        console.log("------------------------------------------------------------------");
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis);
 
-        // Add a group for each column.
-        var valgroup = svg.selectAll("g.valgroup")
-            .data(stacked)
-            .enter().append("svg:g")
-            .attr("class", "valgroup")
-            .style("fill", function(d, i) {
-                return z(i);
-            })
-            .style("stroke", function(d, i) {
-                return d3.rgb(z(i)).darker();
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+
+
+        var state = svg.selectAll(".time")
+            .data(data)
+            .enter().append("g")
+            .attr("class", "time")
+            .attr("transform", function(d) {
+                return "translate(" + x0(d.time) + ",0)";
             });
 
-        // Add a rect for each date.
-        var rect = valgroup.selectAll("rect")
+        state.selectAll("rect")
             .data(function(d) {
-                return d;
+                return d.value;
             })
-            .enter().append("svg:rect")
+            .enter().append("rect")
+            .attr('class', 'bar')
+            .attr("width", x1.rangeBand() * .9)
             .attr("x", function(d) {
-                return x(d.x);
+                return x1(d.name);
             })
             .attr("y", function(d) {
-                return -y(d.y0) - y(d.y);
+                return y(d.value);
             })
             .attr("height", function(d) {
-                return y(d.y);
+                return height - y(d.value) - 1;
             })
-            .attr("width", x.rangeBand());
-    }
+            .style("fill", function(d) {
+                return color(d.name);
+            })
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide);
 
-    d3.createBarGraph = function(array) {
-        svg = d3.select('')
+        var legend = svg.selectAll(".legend")
+            .data(intervals.slice().reverse())
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", function(d, i) {
+                return "translate(0," + i * 20 + ")";
+            });
+
+        legend.append("rect")
+            .attr("x", width - 18)
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill", color);
+
+        legend.append("text")
+            .attr("x", width - 24)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(function(d) {
+                return d;
+            });
+
     }
 
     return d3;

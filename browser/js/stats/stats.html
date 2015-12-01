@@ -1,17 +1,17 @@
 <div class = 'stats'>
 	<div class = 'row'>
-		<div class = 'col-md-4 col-sm-6 col-lg-4 match-info'>
+		<div class = 'col-xs-12 col-md-4 col-sm-6 col-lg-4 match-info'>
 			<h1 id = 'summoner'>{{player.id}}</h2>
 			<img id = 'champion' data-ng-src = '{{imageSource}}'/>
 			<h2 id = 'champion-name'>Amumu</h2>
-			<h3 class = 'title'>Summoner Spells</h3>
+			<h3>Summoner Spells</h3>
 			<img id = 'ss-1' data-ng-src = '{{spell1}}'/>
 			<img id = 'ss-2' data-ng-src = '{{spell2}}'/>
 			<h3 id = 'rank'>{{player.highestAchievedSeasonTier}}
 			<h3 id = 'lane'>{{playerTimeline.lane}}</h3>
-			<h4 id = 'duration'>Game Length {{player.duration}}</h3>
+			<h4>Game Length: <span id = 'duration'>{{player.duration}}</span></h3>
 		</div>
-		<div class = 'col-md-8 col-sm-6 col-lg-8 statsContainer'>
+		<div class = 'col-xs-12 col-md-8 col-sm-6 col-lg-8 statsContainer'>
 			<div class = 'row'>
 				<div class = 'adviceContainer'>
 				<h1>What you need to do better in your first 20 minutes</h1>
@@ -19,18 +19,24 @@
 				</div>
 			</div>
 			<div class = 'row'>
-				<div class = 'col-md-3 col-sm-12 col-lg-3 player-stats'>
-					<h3 id = 'stats'>Statistics </h3>
+				<div class = 'col-md-6 col-sm-12 col-lg-5 graph-container'>
+					<h3 class = 'title'>CS per Min</h3>
+					<cs-graph></cs-graph>
+					<h3 class = 'title'>Damage Taken per Min</h3>
+					<damage-taken-graph></damage-taken-graph>
+				</div>
+				<div class = 'col-md-6 col-sm-12 col-lg-7 player-stats'>
+					<h3 class = 'title'>Statistics</h3>
 					<table class = 'table'>
-						<thread>
+						<thread class = 'table-header'>
 							<tr>
-							<th class = 'first-column'></th>
-							<th class = 'second-column'>Your Performance</th>
-							<th class = 'third-column'>Your League</th>
-							<th class = 'fouth-column'>Higher League</th>
+							<th class = 'column'></th>
+							<th class = 'column'>Your Performance</th>
+							<th class = 'column'>Your League</th>
+							<th class = 'column'>Higher League</th>
 							</tr>
 						</thread>
-						<tbody>
+						<tbody class = 'table-body'>
 							<tr>
 								<th>CS per min: 0-10</th>
 								<td>{{playerTimeline.creepsPerMinDeltas.zeroToTen}}</td>

@@ -14,18 +14,15 @@ navbar {
     text-decoration:none !important;
   }
   .navbar-header{
-    .title{
-    color: $accent2;
+    .logo{
+    color: $highlight;
     cursor: pointer;
     font-weight: bold;
     font-size: 2.8em;
     transition:color 0.2;
-      &.active {
-      
-      }
       &.hover{
         background:none;
-        color: darken($highlight, 10%);
+        color: darken($highlight, 10%) !important;
       }
     }
   }
@@ -34,6 +31,7 @@ navbar {
     padding-top:20px;
     padding-bottom:20px;
     height:100%;
+    float:right;
     line-height: 100%;
     white-space: nowrap;
   }
