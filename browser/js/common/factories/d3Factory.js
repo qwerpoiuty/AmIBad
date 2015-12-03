@@ -21,7 +21,7 @@ app.factory('d3Factory', function() {
             .range([height, 0])
 
         var color = d3.scale.ordinal()
-            .range(['#FFF06D', '#FFA94D', '#FF5353'])
+            .range(['#CFF09E', '#79BD9A', '#3B8686'])
 
         var xAxis = d3.svg.axis()
             .scale(x0)
@@ -37,7 +37,7 @@ app.factory('d3Factory', function() {
             .classed('svg-container', true)
             .append('svg')
             .attr("preserveAspectRatio", "xMinYMin meet")
-            .attr("viewBox", "0 0 400 300")
+            .attr("viewBox", "0 0 340 300")
             .classed('svg0content-responsive', true)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -120,29 +120,6 @@ app.factory('d3Factory', function() {
             })
             .on('mouseover', tip.show)
             .on('mouseout', tip.hide);
-
-        var legend = svg.selectAll(".legend")
-            .data(intervals.slice().reverse())
-            .enter().append("g")
-            .attr("class", "legend")
-            .attr("transform", function(d, i) {
-                return "translate(0," + i * 20 + ")";
-            });
-
-        legend.append("rect")
-            .attr("x", width - 18)
-            .attr("width", 18)
-            .attr("height", 18)
-            .style("fill", color);
-
-        legend.append("text")
-            .attr("x", width - 24)
-            .attr("y", 9)
-            .attr("dy", ".35em")
-            .style("text-anchor", "end")
-            .text(function(d) {
-                return d;
-            });
 
     }
 
