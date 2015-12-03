@@ -1,8 +1,8 @@
 $background : rgba(24,54,65,1);
-$accent2: #94CFC9;
+$accent2: #79BD9A;
 $light: #CEE9F4;
 $foreground: #1F5A6C;
-$highlight:#E8BB61;
+$highlight:#A8DBA8;
 $accent1:#6DB3BF;
 * {
   box-sizing: border-box;
@@ -32,18 +32,24 @@ html{
 }
 
 .title{
-      font-size: 2em;
-      color:$accent2;
-      font-style:underline;
+      font-size: 3em;
+      color:$highlight;
+      text-decoration:underline;
     }
+
+.box{
+    border: 3px solid rgba(54, 168, 210, 0.29);
+    margin-bottom: 15px;
+    padding-top: 5px;  
+}
 
 #main {
   width: 90%;
   margin: 0 auto;
-  background-color:white;
+  background-color:$foreground;
   max-width:1400px;
   overflow:auto;
-
+  min-height:84vh;
 }
 
 #footer{
@@ -75,6 +81,13 @@ html{
         top: 100%;
         left: 0;
       }
+
+.shadow {
+  -webkit-box-shadow: 0px 0px 12px 6px rgba(31,90,108,1) !important;
+  -moz-box-shadow: 0px 0px 12px 6px rgba(31,90,108,1) !important;
+  box-shadow: 0px 0px 12px 6px rgba(31,90,108,1) !important;
+  }
+
 
 .background{
   background-color: $background;

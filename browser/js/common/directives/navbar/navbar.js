@@ -6,13 +6,13 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function(scope) {
 
-            scope.items = [{
-                label: 'About',
-                state: 'about'
-            }, {
-                label: 'F.A.Q',
-                state: 'faqs'
-            }];
+            // scope.items = [{
+            //     label: 'About',
+            //     state: 'about'
+            // }, {
+            //     label: 'F.A.Q',
+            //     state: 'faqs'
+            // }];
 
             scope.summoner;
             scope.lookUp = function(summoner) {
