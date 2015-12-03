@@ -74,7 +74,30 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $st
         var player = $scope.player
         var average = $scope.averageStats
         var higher = $scope.higherStats
-
+        var cs = [{
+            'time': "0-10 Minutes",
+            'You': player.timeline.creepsPerMinDeltas.zeroToTen,
+            'Your League Average': average.timeline.creepsPerMinDeltas.zeroToTen,
+            'Higher League\'s Average': higher.timeline.creepsPerMinDeltas.zeroToTen
+        }, {
+            'time': "10-20 Minutes",
+            'You': player.timeline.creepsPerMinDeltas.tenToTwenty,
+            'Your League Average': average.timeline.creepsPerMinDeltas.tenToTwenty,
+            'Higher League\'s Average': higher.timeline.creepsPerMinDeltas.tenToTwenty
+        }]
+        var damage = [{
+            'time': "0-10 Minutes",
+            'You': player.timeline.damageTakenPerMinDeltas.zeroToTen,
+            'Your League Average': average.timeline.damageTakenPerMinDeltas.zeroToTen,
+            'Higher League\'s Average': higher.timeline.damageTakenPerMinDeltas.zeroToTen
+        }, {
+            'time': "10-20 Minutes",
+            'You': player.timeline.damageTakenPerMinDeltas.tenToTwenty,
+            'Your League Average': average.timeline.damageTakenPerMinDeltas.tenToTwenty,
+            'Higher League\'s Average': higher.timeline.damageTakenPerMinDeltas.tenToTwenty
+        }]
+        d3Factory.createBarGraph(cs, 'cs-graph')
+        d3Factory.createBarGraph(damage, 'damage-taken-graph')
     }
 
 

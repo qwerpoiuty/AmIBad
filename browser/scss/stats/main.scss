@@ -1,2 +1,101 @@
+.stats{
 
+	background-color:$foreground;
+	position:relative;
+	-webkit-box-shadow: 0px 0px 12px 6px rgba(31,90,108,1);
+	-moz-box-shadow: 0px 0px 12px 6px rgba(31,90,108,1);
+	box-shadow: 0px 0px 12px 6px rgba(31,90,108,1) !important;
+	height:100%;
+	min-height:84vh;
+	.match-info{
+		color:$accent2;
+		font-weight: bold;
+		text-align:center;
+		margin-left:-3%;
+		#summoner{
+			display:inline-block;
+			margin:0 auto;
+			font-size: 3.2em;
+			margin: 5% 0;
+		}
+		#champion{
+			display:block;
+			margin:5% auto;
+			font-size: 3em;
+		}
+		#champion-name{
+			display:inline-block;
+			margin:0 auto;
+			color:$highlight;
+		}
+		#duration{
+			color:$highlight;
+		}
+	} 
+	.statsContainer{
+		
+		table{
+			border-spacing: 0;
+		}
+		.table > tbody{
+			border-top: none;
+		}
+		td, th{
+  			width: 3rem;
+  			height: 1.5rem;
+  			text-align: center;
+			
+		}
+		.column{
+			color:$light;
+			font-size: 1em;
+		}
+		.table-body > tr > th{
+			color:$light;
+			font-size:1em;
+			text-align: left;
+		}
+		.table > tbody > tr > th,.table > tbody > tr > td{
+			border:none;
+		}
+		th {
+			background: none;
+
+		}
+		td{
+			color:$highlight;
+		}
+		tr{
+
+		}
+		.adviceContainer{
+			h1{
+				color:$accent2;
+			}
+			p{
+				color:$light;
+			}
+		}
+		.player-stats{
+			padding:0;
+		}
+		.graph-container{
+			padding:0;
+			.axis path,
+			.axis line {
+			  fill:none;
+			  stroke: $light;
+			  stroke-opacity:.75;
+			  shape-rendering: crispEdges;
+			}
+			.tick{
+				fill:$light;
+			}
+			.x.axis path {
+  				
+			}
+
+		}
+	}
+}
 

@@ -1,11 +1,22 @@
+$background : rgba(24,54,65,1);
+$accent2: #94CFC9;
+$light: #CEE9F4;
+$foreground: #1F5A6C;
+$highlight:#E8BB61;
+$accent1:#6DB3BF;
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: #fdfdfd;
+  overflow:auto;
+  height:100%;
 }
 
+html{
+  height:100%;
+  overflow:hidden;
+}
 @mixin clearfix {
   &:after {
     content: "";
@@ -14,11 +25,64 @@ body {
   }
 }
 
-#main {
-  padding-top: 60px;
-  width: 1200px;
-  margin: 0 auto;
+@media (max-width: 767px) { 
+    .navbar{
+        display:none;
+    }
 }
+
+.title{
+      font-size: 2em;
+      color:$accent2;
+      font-style:underline;
+    }
+
+#main {
+  width: 90%;
+  margin: 0 auto;
+  background-color:white;
+  max-width:1400px;
+  overflow:auto;
+
+}
+
+#footer{
+  height:5%;
+}
+.d3-tip {
+        line-height: 1;
+        font-size:8;
+        padding: 8px;
+        background: rgba(0, 0, 0, 0.5);
+        color: $light;
+        border-radius: 4px;
+      }
+      .d3-tip:after {
+        box-sizing: border-box;
+        display: inline;
+        font-size: 10px;
+        width: 100%;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.5);
+        content: "\25BC";
+        position: absolute;
+        text-align: center;
+      }
+
+      /* Style northward tooltips differently */
+      .d3-tip.n:after {
+        margin: -3px 0 0 0;
+        top: 100%;
+        left: 0;
+      }
+
+.background{
+  background-color: $background;
+  z-index: -10;
+  height:100%;
+  overflow:auto;
+}
+
 
 @import 'directives/main';
 @import 'home/main';

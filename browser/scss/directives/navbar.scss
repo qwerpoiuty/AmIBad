@@ -1,60 +1,75 @@
 navbar {
 
   display: block;
-  background: white;
-  border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
 
   .container {
     width: 91%;
-    max-width: 1340px;
-    padding-top: 20px;
-  }
-
-  fullstack-logo {
-    margin-top: 5px;
-    margin-right: 20px;
-    width: 40px;
+    position:relative;
   }
 
   a {
-    color: black;
+    color: $light;
     font-size: 16px;
+    text-decoration:none !important;
   }
-
+  .navbar-header{
+    .logo{
+    color: $highlight;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 2.8em;
+    transition:color 0.2;
+      &.hover{
+        background:none;
+        color: darken($highlight, 10%) !important;
+      }
+    }
+  }
+  .nav{
+    margin-left: 2%;
+    padding-top:20px;
+    padding-bottom:20px;
+    height:100%;
+    float:right;
+    line-height: 100%;
+    white-space: nowrap;
+  }
   .nav > li > a {
     cursor: pointer;
     transition: color 0.2s;
     &.active {
-      color: darken(#f31214, 10%);
+      color: darken($highlight, 10%);
     }
     &:hover {
       background: none;
-      color: #f31214;
+      color: $highlight;
     }
     &:focus {
       background: none;
     }
   }
 
-  .login-button {
-    float: right;
-    border: 1px solid black;
-    margin-top: 10px;
-    background: none;
-    outline: none !important;
+
+ .search-bar{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  input[type= 'text']{
+    padding:5px;
+    border: solid 5px #c9c9c9;
+    border-radius: 4px;
+    font-size:15px
+  }
+  
+  .search{
+    background-color: $accent1;
+    border:none;
   }
 
-  .welcome {
-    float: right;
-    margin-top: 12px;
-    span {
-      color: white;
-    }
-    a {
-      color: #f30046;
-      cursor: pointer;
-    }
-  }
+ }
+
 
 }
