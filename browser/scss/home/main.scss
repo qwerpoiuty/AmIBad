@@ -1,8 +1,54 @@
 #home {
-  .tagline {
-    color:$highlight;
-    text-align: center;
-    font-size:3.5em;
-  }
+	background-color:$background;
+	text-align: center;
+	min-height:84vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	.logo-container{
+		height:100%;
+		.logo{
+			color: $highlight;
+			font-size: 9.5em;
+			display:inline-block;
+			margin:0;
+		}
+		.subtitle{
+			color:$accent2;
+			font-size: 2.5em;
+			display:inline-block;
+			margin:0;
+		}
+		.search-bar{
+			margin-top: 5%;
+			.disclaimer{
+				color:$accent2;
+			}
+			.search {
+	                padding:8px 15px;
+	                background:white;
+	                border:0px solid #dbdbdb;
+	                color:$highlight;
+	                border-radius:10px;
+			}
+			.search:focus{
+				outline:none;
+				color:$highlight;
+			}
+			.button {	
+					display:block;
+					margin: 3% auto;
+	                padding:6px 15px;
+	                left:-8px;
+	                border:2px solid $foreground;
+	                background-color:$foreground;
+	                color:$light;
+			}
+			.button:hover  {
+	                background-color:$accent1;
+	                color:$background;
+			}
+		}
+	}
 }
 
