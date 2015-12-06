@@ -1,13 +1,18 @@
 navbar {
-
   display: block;
-  box-shadow: 1px 1px 14px -3px black;
 
   .container {
-    width: 91%;
+    background-color:$background;
+    width: 100%;
     position:relative;
   }
-
+  .subtitle{
+    color:$highlight;
+    margin-bottom:5px;
+    margin-top:0;
+    font-size: .8em;
+    padding-left:3px;
+  }
   a {
     color: $light;
     font-size: 16px;
@@ -20,6 +25,7 @@ navbar {
     font-weight: bold;
     font-size: 2.8em;
     transition:color 0.2;
+    margin-bottom:0;
       &.hover{
         background:none;
         color: darken($highlight, 10%) !important;

@@ -5,7 +5,7 @@ app.config(function($stateProvider) {
         controller: 'StatsCtrl',
         resolve: {
             PlayerStats: function($stateParams, irelia, stats) {
-                return stats.findChamp('40', 'PLATINUM')
+                return irelia.getRecentMatch($stateParams.id)
             }
         }
 
@@ -15,6 +15,7 @@ app.config(function($stateProvider) {
 
 app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $stateParams, d3Factory) {
     //sorting the stats of the player into things to be displayed
+    $scope.notHome = true;
     $scope.Math = window.Math
     $scope.player = PlayerStats
     $scope.player.id = $stateParams.id
@@ -60,7 +61,7 @@ app.controller('StatsCtrl', function($scope, $rootScope, PlayerStats, stats, $st
         //     case 'CHALLENGER':
         //         rank = 'CHALLENGER'
         // }
-        stats.findChamp('40', rank).then(function(data) {
+        stats.findChamp('40', $scope.rank).then(function(data) {
             $scope.higherStats = data;
             $scope.higherTimeline = data.timeline;
             $scope.makeGraphs()

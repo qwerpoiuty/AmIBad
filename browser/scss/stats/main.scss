@@ -1,22 +1,40 @@
 .stats{
-
+	text-align:center;
 	background-color:$foreground;
-	position:relative;
-	-webkit-box-shadow: 0px 0px 12px 6px rgba(31,90,108,1);
-	-moz-box-shadow: 0px 0px 12px 6px rgba(31,90,108,1);
-	box-shadow: 0px 0px 12px 6px rgba(31,90,108,1) !important;
-	height:100%;
-	min-height:84vh;
+	width:98%;
+	margin:0 auto;
+	.adviceContainer{
+		text-align:center;
+		margin-bottom: 10px;
+		display:inline-block;
+			h1{
+				color:$highlight;
+				font-weight:bold;
+				font-size:4em;
+			}
+			p{
+				font-size: 1.3em;
+				color:$light;
+			}
+		}
+	.row{
+		margin:0;
+	}
 	.match-info{
 		color:$accent2;
 		font-weight: bold;
 		text-align:center;
-		margin-left:-3%;
 		#summoner{
 			display:inline-block;
 			margin:0 auto;
-			font-size: 3.2em;
-			margin: 5% 0;
+			font-size: 3.1em;
+			margin: 0;
+			color:$highlight;
+			@media (min-width:893){
+				#summoner{
+					font-size:2.4em;
+				}
+			}
 		}
 		#champion{
 			display:block;
@@ -28,12 +46,17 @@
 			margin:0 auto;
 			color:$highlight;
 		}
-		#duration{
+		.highlight{
 			color:$highlight;
 		}
 	} 
 	.statsContainer{
-		
+		padding:0;
+		.graph-title{
+			font-size:1.1em;
+			margin:0 0 0 0;
+			color:$light;
+		}
 		table{
 			border-spacing: 0;
 		}
@@ -57,6 +80,10 @@
 		}
 		.table > tbody > tr > th,.table > tbody > tr > td{
 			border:none;
+			vertical-align:middle;
+		}
+		.table >tbody > tr:nth-of-type(even){
+			background-color:$background;
 		}
 		th {
 			background: none;
@@ -64,6 +91,8 @@
 		}
 		td{
 			color:$highlight;
+			font-size:1.1em;
+			padding:0;
 		}
 		tr{
 
@@ -73,14 +102,30 @@
 				color:$accent2;
 			}
 			p{
+				font-size: 1.3em;
 				color:$light;
 			}
 		}
-		.player-stats{
-			padding:0;
-		}
 		.graph-container{
-			padding:0;
+			.graph{
+				padding-left:10px;
+			}
+			.legend{
+				padding-left:10%;
+				li{
+					display:inline-block;
+					color:$light;
+					padding-right:5px;
+				}
+				span{
+					width:12px;
+					height:12px;
+					position:relative;
+					display:block;
+					float: left;
+					margin-right:6px;
+				}
+			}
 			.axis path,
 			.axis line {
 			  fill:none;

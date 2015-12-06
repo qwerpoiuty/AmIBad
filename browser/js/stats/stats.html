@@ -1,33 +1,54 @@
-<div class = 'stats'>
+<navbar></navbar>
+<div class = 'stats shadow'>
 	<div class = 'row'>
-		<div class = 'col-xs-12 col-md-4 col-sm-6 col-lg-4 match-info'>
-			<h1 id = 'summoner'>{{player.id}}</h2>
-			<img id = 'champion' data-ng-src = '{{imageSource}}'/>
-			<h2 id = 'champion-name'>Amumu</h2>
-			<h3>Summoner Spells</h3>
-			<img id = 'ss-1' data-ng-src = '{{spell1}}'/>
-			<img id = 'ss-2' data-ng-src = '{{spell2}}'/>
-			<h3 id = 'rank'>{{player.highestAchievedSeasonTier}}
-			<h3 id = 'lane'>{{playerTimeline.lane}}</h3>
-			<h4>Game Length: <span id = 'duration'>{{player.duration}}</span></h3>
+		<div class = 'adviceContainer'>
+			<h1>How your first 20 minutes stack up.</h1>
+			<p>This is your most recent match.</p>
 		</div>
-		<div class = 'col-xs-12 col-md-8 col-sm-6 col-lg-8 statsContainer'>
-			<div class = 'row'>
-				<div class = 'adviceContainer'>
-				<h1>What you need to do better in your first 20 minutes</h1>
-				<p>This is your most recent match.</p>
+	</div>
+	<div class = 'row'>
+		<div class = 'col-xs-12 col-md-3 col-sm-6 col-lg-3 match-info graph'>
+			<h3 class = 'title'>Game Info</h3>
+				<div class = 'box'>
+					<h1 id = 'summoner'>{{player.id}}</h2>
+					<img id = 'champion' data-ng-src = '{{imageSource}}'/>
+					<h2 class = 'highlight'>{{averageStats.name}}</h2>
+					<h3>Summoner Spells</h3>
+					<img id = 'ss-1' data-ng-src = '{{spell1}}'/>
+					<img id = 'ss-2' data-ng-src = '{{spell2}}'/>
+					<h3>Rank</h3>
+					<h3 class = 'highlight'>{{player.highestAchievedSeasonTier}}</h3>
+					<h3>Role</h3>
+					<h3 class = 'highlight'>{{playerTimeline.lane}}</h3>
+					<h3>Game Length: <span id = 'duration'>{{player.duration}}</span></h3>
 				</div>
-			</div>
+		</div>
+		<div class = 'col-xs-12 col-md-9 col-sm-6 col-lg-9 statsContainer'>
 			<div class = 'row'>
-				<div class = 'col-md-6 col-sm-12 col-lg-5 graph-container'>
-					<h3 class = 'title'>CS per Min</h3>
-					<cs-graph></cs-graph>
-					<h3 class = 'title'>Damage Taken per Min</h3>
-					<damage-taken-graph></damage-taken-graph>
+				<div class = 'col-md-6 col-sm-12 col-lg-5 break'>
+					<h3 class = 'title'>Graphs</h3>
+					<div class = 'graph-container'>
+						<div class = 'box graph'>
+							<h3 class = 'graph-title'>CS per Min</h3>
+							<cs-graph></cs-graph>
+							<ul class = 'legend'>
+								<li><span style = "background-color:#459AB7"></span>You</li>
+								<li><span style = "background-color:#6DB3BF"></span>League Average</li>
+								<li><span style = "background-color:#92D0C9"></span>Higher Average</li>
+							</ul>
+							<h3 class = 'graph-title'>Damage Taken per Min</h3>
+							<damage-taken-graph></damage-taken-graph>
+							<ul class = 'legend'>
+								<li><span style = "background-color:#459AB7"></span>You</li>
+								<li><span style = "background-color:#6DB3BF"></span>League Average</li>
+								<li><span style = "background-color:#92D0C9"></span>Higher Average</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 				<div class = 'col-md-6 col-sm-12 col-lg-7 player-stats'>
 					<h3 class = 'title'>Statistics</h3>
-					<table class = 'table'>
+					<table class = 'table box'>
 						<thread class = 'table-header'>
 							<tr>
 							<th class = 'column'></th>
@@ -39,9 +60,9 @@
 						<tbody class = 'table-body'>
 							<tr>
 								<th>CS per min: 0-10</th>
-								<td>{{playerTimeline.creepsPerMinDeltas.zeroToTen}}</td>
-								<td>{{averageTimeline.creepsPerMinDeltas.zeroToTen/averageStats.totalEntries}}</td>
-								<td>{{higherTimeline.creepsPerMinDeltas.zeroToTen/higherStats.totalEntries}}</td>
+								<td>{{Math.round(playerTimeline.creepsPerMinDeltas.zeroToTen)}}</td>
+								<td>{{Math.round(averageTimeline.creepsPerMinDeltas.zeroToTen/averageStats.totalEntries)}}</td>
+								<td>{{Math.round(higherTimeline.creepsPerMinDeltas.zeroToTen/higherStats.totalEntries)}}</td>
 							</tr>
 							<tr>
 								<th>CS difference at 10 minutes</th>
@@ -57,9 +78,9 @@
 							</tr>
 							<tr>
 								<th>CS difference at 20 minutes</th>
-								<td>{{playerTimeline.csDiffPerMinDeltas.tenToTwenty * 10}}</td>
-								<td>{{averageTimeline.csDiffPerMinDeltas.tenToTwenty * 10/averageStats.totalEntries}}</td>
-								<td>{{higherTimeline.csDiffPerMinDeltas.tenToTwenty * 10/higherStats.totalEntries}}</td>
+								<td>{{Math.round(playerTimeline.csDiffPerMinDeltas.tenToTwenty * 10)}}</td>
+								<td>{{Math.round(averageTimeline.csDiffPerMinDeltas.tenToTwenty * 10/averageStats.totalEntries)}}</td>
+								<td>{{Math.round(higherTimeline.csDiffPerMinDeltas.tenToTwenty * 10/higherStats.totalEntries)}}</td>
 							</tr>
 							<tr>
 								<th>Damage Taken Per Minute: 0-10</th>
