@@ -1,8 +1,8 @@
 $background : rgba(24,54,65,1);
-$accent2: #79BD9A;
+$accent2: #94CFC9;
 $light: #CEE9F4;
 $foreground: #1F5A6C;
-$highlight:#A8DBA8;
+$highlight:#E8BB61;
 $accent1:#6DB3BF;
 * {
   box-sizing: border-box;
@@ -33,7 +33,7 @@ html{
 
 .title{
       font-size: 3em;
-      color:$highlight;
+      color:$accent2;
       text-decoration:underline;
     }
 
@@ -46,9 +46,9 @@ html{
 #main {
   width: 90%;
   margin: 0 auto;
-  background-color:$foreground;
+  background-color:rgba(31,90,108,.6);
   max-width:1400px;
-  overflow:auto;
+  overflow:hidden;
   min-height:84vh;
 }
 

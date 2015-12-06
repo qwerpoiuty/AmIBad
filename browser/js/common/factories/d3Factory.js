@@ -21,7 +21,7 @@ app.factory('d3Factory', function() {
             .range([height, 0])
 
         var color = d3.scale.ordinal()
-            .range(['#CFF09E', '#79BD9A', '#3B8686'])
+            .range(['#459AB7', '#6DB3BF', '#92D0C9'])
 
         var xAxis = d3.svg.axis()
             .scale(x0)
