@@ -48,19 +48,19 @@ var createChamps = function() {
         name: 'Elise',
         lane: 'JUNGLE',
         rank: 'PLATINUM',
-        kills: 1000,
-        deaths: 1000,
-        assists: 1000,
+        kills: 5,
+        deaths: 5,
+        assists: 5,
         physicalDamageDealtToChampions: 1000,
         magicDamageDealtToChampions: 1000,
         trueDamageDealtToChampions: 1000,
         totalDamageDealtToChampions: 1000,
-        minionsKilled: 1000,
-        neutralMinionsKilled: 1000,
-        sightWardsBoughtInGame: 1000,
-        visionWardsBoughtInGame: 1000,
-        wardsPlaced: 1000,
-        wardsKilled: 1000,
+        minionsKilled: 100,
+        neutralMinionsKilled: 100,
+        sightWardsBoughtInGame: 100,
+        visionWardsBoughtInGame: 100,
+        wardsPlaced: 5,
+        wardsKilled: 5,
         totalDamageTaken: 1000,
         totalHeal: 1000,
         timeline: {
@@ -69,12 +69,12 @@ var createChamps = function() {
                 tenToTwenty: 1000,
             },
             creepsPerMinDeltas: {
-                zeroToTen: 1000,
-                tenToTwenty: 1000
+                zeroToTen: 10,
+                tenToTwenty: 10
             },
             csDiffPerMinDeltas: {
-                zeroToTen: 1000,
-                tenToTwenty: 1000
+                zeroToTen: 5,
+                tenToTwenty: 5
             }
 
 
