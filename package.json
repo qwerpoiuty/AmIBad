@@ -1,6 +1,9 @@
 {
     "name": "GitGud",
     "version": "1.0.0",
+    "engines": {
+        "node": "4.1.1"
+    },
     "description": "A webapp designed to help you get better at league of legends",
     "main": "server/start.js",
     "scripts": {
